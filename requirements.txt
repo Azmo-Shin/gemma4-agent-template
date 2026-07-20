@@ -1,0 +1,6 @@
+openai>=1.0
+
+# ── 확장 도구를 켤 때만 필요 (tools.py 주석 참고) ──
+# pandas                     # [2] read_table (CSV/Excel)
+# openpyxl                   # [2] xlsx 읽기
+# mysql-connector-python     # [3] run_sql (DB 조회)
