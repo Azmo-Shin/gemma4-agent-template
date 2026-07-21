@@ -124,10 +124,12 @@ def 도구이름(인자명):
 ## 🧪 테스트
 
 ```bash
-python -m pytest tests/        # 토큰·네트워크 없이 오프라인으로 24개 검증
+python -m pytest tests/        # 토큰·네트워크 없이 오프라인으로 28개 검증
 ```
 
-- `tests/test_tools.py` — 레지스트리 동기화·중복거부·경로제한·비밀파일차단·크기제한 등
+또는 **에이전트에게 대화로**: `python agent.py` 실행 후 **"테스트 돌려줘"** → `run_tests` 도구가 pytest를 실행하고 결과를 요약해준다.
+
+- `tests/test_tools.py` — 레지스트리 동기화·중복거부·경로제한·비밀파일차단·크기제한·run_tests 등
 - `tests/test_agent.py` — 무한루프 상한·도구예외 복구·빈도구목록·None방지 (가짜 client 로 LLM 없이)
 - 새 도구를 추가하면 여기에 테스트도 한 줄 추가하는 습관을 권함.
 

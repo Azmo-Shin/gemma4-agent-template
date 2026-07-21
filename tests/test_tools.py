@@ -95,3 +95,32 @@ def test_read_file_binary_tolerant(tmp_path, monkeypatch):
     p = tmp_path / "b.bin"; p.write_bytes(b"\xff\xfe\x00abc")
     out = tools.read_file(str(p))
     assert isinstance(out, str) and not out.startswith("오류: 'utf-8'")  # errors='replace'
+
+
+# ── run_tests (pytest 실행 도구) — subprocess 는 가짜로 대체 ──
+def test_run_tests_registered():
+    assert "run_tests" in tools.TOOL_FUNCS
+    schema = [t for t in tools.TOOLS if t["function"]["name"] == "run_tests"][0]
+    assert schema["function"]["parameters"]["properties"] == {}   # 모델이 인자 못 줌 (안전)
+
+
+def test_run_tests_returns_output(monkeypatch):
+    import subprocess
+    fake = type("R", (), {"stdout": "24 passed in 0.5s\n", "stderr": ""})()
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: fake)
+    assert "24 passed" in tools.run_tests()
+
+
+def test_run_tests_truncates(monkeypatch):
+    import subprocess
+    fake = type("R", (), {"stdout": "X" * 5000, "stderr": ""})()
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: fake)
+    assert len(tools.run_tests()) <= 2000
+
+
+def test_run_tests_handles_error(monkeypatch):
+    import subprocess
+    def boom(*a, **k):
+        raise RuntimeError("python 없음")
+    monkeypatch.setattr(subprocess, "run", boom)
+    assert tools.run_tests().startswith("오류:")

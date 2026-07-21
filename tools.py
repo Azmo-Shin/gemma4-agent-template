@@ -99,6 +99,19 @@ def read_file(path):
         return f"오류: {e}"
 
 
+@tool("run_tests", "프로젝트의 단위 테스트(pytest)를 실행하고 결과 요약을 반환한다.")
+def run_tests():
+    # 모델은 인자를 못 준다 → 정해진 명령(pytest tests/)만 실행되어 안전하다.
+    import subprocess, sys
+    try:
+        r = subprocess.run([sys.executable, "-m", "pytest", "tests/", "-q"],
+                           capture_output=True, text=True, timeout=120, cwd=ALLOWED_ROOT)
+        out = (r.stdout + r.stderr).strip()
+        return out[-2000:] if out else "(출력 없음)"      # 마지막 요약부만
+    except Exception as e:
+        return f"오류: 테스트 실행 실패: {e}"
+
+
 # ════════════════════════════════════════════════════════════
 #  확장 예시 — 필요할 때 주석(#)만 풀어서 사용하세요.
 #  (각 예시는 README.md '확장 아이디어'에 설명 있음)
