@@ -1,6 +1,7 @@
 .env
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # 로컬 Claude 설정(권한 기록 등 — 토큰 포함될 수 있어 절대 커밋 금지)
 .claude/

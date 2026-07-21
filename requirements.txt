@@ -1,5 +1,8 @@
 openai>=1.0
 
+# ── 개발/테스트용 ──
+pytest>=7.0                  # python -m pytest tests/
+
 # ── 확장 도구를 켤 때만 필요 (tools.py 주석 참고) ──
 # pandas                     # [2] read_table (CSV/Excel)
 # openpyxl                   # [2] xlsx 읽기
