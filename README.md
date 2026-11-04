@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/header.svg" alt="gemma4-agent-template" width="100%"></p>
+
 # Gemma 4 Tool-Calling Agent — 재사용 템플릿
 
 Gemma 4(HuggingFace Inference Providers / Novita)로 만든 **도구 사용 에이전트** 템플릿.
