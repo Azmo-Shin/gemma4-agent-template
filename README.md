@@ -1,5 +1,7 @@
 <p align="center"><img src="assets/header.svg" alt="gemma4-agent-template" width="100%"></p>
 
+<p align="center"><a href="https://github.com/Azmo-Shin/gemma4-agent-template/actions/workflows/tests.yml"><img src="https://github.com/Azmo-Shin/gemma4-agent-template/actions/workflows/tests.yml/badge.svg" alt="tests"></a> <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT"></p>
+
 # Gemma 4 Tool-Calling Agent — 재사용 템플릿
 
 Gemma 4(HuggingFace Inference Providers / Novita)로 만든 **도구 사용 에이전트** 템플릿.
